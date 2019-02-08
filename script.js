@@ -15,6 +15,7 @@ import "./style.scss";
 //Arrays containing accepted values for position
 let xAxisArr = ["top : ", "bottom : "];
 let yAxisArr = ["right : ", "left : "];
+let numberOfTry = 0;
 
 //returns a new array containing random picks from two other arrays
 let pickRandomPos = (arrA, arrB) => {
@@ -30,7 +31,12 @@ let pickRandomPos = (arrA, arrB) => {
 
 //trigger on mouseover
 document.getElementById("trollButton").addEventListener('mouseover', () => {
-  console.log("mouseover");//works
+  numberOfTry ++
+  if(numberOfTry%5===0){
+    document.getElementById("trollButton").innerText=`You have tried ${numberOfTry} times.`;
+  } else {
+    document.getElementById("trollButton").innerText=`Click me !`;
+  }
   let newPos = pickRandomPos(xAxisArr, yAxisArr); //contains an array
   document.getElementById("buttonBox").style = 'position:absolute ;' + newPos[0] + '; ' + newPos[1] +';';
 
